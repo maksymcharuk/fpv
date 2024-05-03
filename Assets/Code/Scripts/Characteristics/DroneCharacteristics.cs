@@ -18,9 +18,6 @@ namespace FPVDrone
         public float cyclicForce = 2f;
         #endregion
 
-        #region Built-in Methods
-        #endregion
-
         #region Custom Methods
         public virtual void UpdateCharacteristics(Rigidbody rb, InputController input)
         {
