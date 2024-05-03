@@ -31,12 +31,6 @@ namespace FPVDrone
             get { return stickyThrottleInput; }
         }
 
-        private float collectiveInput;
-        public float CollectiveInput
-        {
-            get { return collectiveInput; }
-        }
-
         private Vector2 cyclicInput;
         public Vector2 CyclicInput
         {
@@ -72,7 +66,6 @@ namespace FPVDrone
                 case InputType.Keyboard:
                     throttleInput = keyboardInput.RawThrottleInput;
                     stickyThrottleInput = keyboardInput.StickyThrottleInput;
-                    collectiveInput = keyboardInput.CollectiveInput;
                     cyclicInput = keyboardInput.CyclicInput;
                     pedalInput = keyboardInput.PedalInput;
                     break;

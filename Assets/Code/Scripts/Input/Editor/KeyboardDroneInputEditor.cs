@@ -31,7 +31,6 @@ namespace FPVDrone
 
             EditorGUI.indentLevel++;
             EditorGUILayout.LabelField("Throttle Input: " + targetInput.RawThrottleInput);
-            EditorGUILayout.LabelField("Collective Input: " + targetInput.CollectiveInput);
             EditorGUILayout.LabelField("Cyclic Input: " + targetInput.CyclicInput);
             EditorGUILayout.LabelField("Pedal Input: " + targetInput.PedalInput);
             EditorGUI.indentLevel--;

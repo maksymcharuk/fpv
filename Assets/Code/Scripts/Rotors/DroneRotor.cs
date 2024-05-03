@@ -19,7 +19,6 @@ namespace FPVDrone
         public void UpdateRotor(float dps)
         {
             currentRPM = dps / 360 * 60;
-            Debug.Log("Current RPM: " + currentRPM);
             transform.Rotate(Vector3.up, dps);
         }
         #endregion

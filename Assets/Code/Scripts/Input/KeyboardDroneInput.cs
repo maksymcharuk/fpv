@@ -17,12 +17,6 @@ namespace FPVDrone
             get { return stickyThrottleInput; }
         }
 
-        private float collectiveInput = 0f;
-        public float CollectiveInput
-        {
-            get { return collectiveInput; }
-        }
-
         private Vector2 cyclicInput = Vector2.zero;
         public Vector2 CyclicInput
         {
@@ -45,7 +39,6 @@ namespace FPVDrone
             base.HandleInputs();
 
             HandleThrottle();
-            HandleCollective();
             HandleCyclic();
             HandlePedal();
 
@@ -56,11 +49,6 @@ namespace FPVDrone
         protected virtual void HandleThrottle()
         {
             throttleInput = Input.GetAxis("Throttle");
-        }
-
-        protected virtual void HandleCollective()
-        {
-            collectiveInput = Input.GetAxis("Collective");
         }
 
         protected virtual void HandleCyclic()
@@ -77,7 +65,6 @@ namespace FPVDrone
         protected void ClampInputs()
         {
             throttleInput = Mathf.Clamp(throttleInput, -1f, 1f);
-            collectiveInput = Mathf.Clamp(collectiveInput, -1f, 1f);
             cyclicInput = Vector2.ClampMagnitude(cyclicInput, 1f);
             pedalInput = Mathf.Clamp(pedalInput, -1f, 1f);
         }
