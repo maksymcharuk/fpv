@@ -5,7 +5,7 @@ namespace FPVDrone
     public class KeyboardDroneInput : BaseDroneInput
     {
         #region Properties
-        private float throttleInput = 0f;
+        protected float throttleInput = 0f;
         public float RawThrottleInput
         {
             get { return throttleInput; }
@@ -17,16 +17,16 @@ namespace FPVDrone
             get { return stickyThrottleInput; }
         }
 
-        private Vector2 cyclicInput = Vector2.zero;
+        protected Vector2 cyclicInput = Vector2.zero;
         public Vector2 CyclicInput
         {
             get { return cyclicInput; }
         }
 
-        private float pedalInput = 0f;
-        public float PedalInput
+        protected float rotationInput = 0f;
+        public float RotationInput
         {
-            get { return pedalInput; }
+            get { return rotationInput; }
         }
         #endregion
 
@@ -40,7 +40,7 @@ namespace FPVDrone
 
             HandleThrottle();
             HandleCyclic();
-            HandlePedal();
+            HandleRotation();
 
             ClampInputs();
             HandleStickyThrottle();
@@ -57,16 +57,16 @@ namespace FPVDrone
             cyclicInput.x = horizontal;
         }
 
-        protected virtual void HandlePedal()
+        protected virtual void HandleRotation()
         {
-            pedalInput = Input.GetAxis("Pedal");
+            rotationInput = Input.GetAxis("Rotation");
         }
 
         protected void ClampInputs()
         {
             throttleInput = Mathf.Clamp(throttleInput, -1f, 1f);
             cyclicInput = Vector2.ClampMagnitude(cyclicInput, 1f);
-            pedalInput = Mathf.Clamp(pedalInput, -1f, 1f);
+            rotationInput = Mathf.Clamp(rotationInput, -1f, 1f);
         }
 
         // Constantly adds power to the throttle input

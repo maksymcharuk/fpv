@@ -10,7 +10,7 @@ namespace FPVDrone
         public DroneRotor[] rotors;
 
         [Space]
-        [Header("Pedal Properties")]
+        [Header("Rotation Properties")]
         public float rotationForce = 2f;
 
         [Space]
@@ -23,7 +23,7 @@ namespace FPVDrone
         {
             HandleLift(rb, input);
             HandleCyclic(rb, input);
-            HandlePedals(rb, input);
+            HandleRotation(rb, input);
         }
 
         protected virtual void HandleLift(Rigidbody rb, InputController input)
@@ -46,9 +46,9 @@ namespace FPVDrone
             rb.AddRelativeTorque(Vector3.right * cyclicXForce, ForceMode.Acceleration);
         }
 
-        protected virtual void HandlePedals(Rigidbody rb, InputController input)
+        protected virtual void HandleRotation(Rigidbody rb, InputController input)
         {
-            rb.AddTorque(transform.up * input.PedalInput * rotationForce, ForceMode.Force);
+            rb.AddTorque(transform.up * input.RotationInput * rotationForce, ForceMode.Force);
         }
         #endregion
     }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3956620455169018831}
   - component: {fileID: 2245507987597018817}
   - component: {fileID: 7382740313064687233}
+  - component: {fileID: 1748987219602430919}
   - component: {fileID: 6303375846030893327}
   - component: {fileID: 3233543755020212413}
   - component: {fileID: 76518937818748669}
@@ -78,6 +79,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b3d18805f0f3e4d82f389ee5a9d702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1748987219602430919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187763104725182204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f755187f7394064e81c16cde2c20a39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6303375846030893327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,8 +103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb24eec8cdbbb2468bab9d37af47984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputType: 0
+  inputType: 1
   keyboardInput: {fileID: 0}
+  joystickInput: {fileID: 0}
 --- !u!114 &3233543755020212413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +138,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 176c4baa52969304fa5ae69b8f9418aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxLiftForce: 30
+  rotors:
+  - {fileID: 5819576012773961384}
+  - {fileID: 4872705033566627530}
+  - {fileID: 484851575591060577}
+  - {fileID: 5970038557172392840}
+  rotationForce: 2
+  cyclicForce: 2
 --- !u!1 &831399224541889555
 GameObject:
   m_ObjectHideFlags: 0

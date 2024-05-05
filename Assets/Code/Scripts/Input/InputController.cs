@@ -5,7 +5,7 @@ namespace FPVDrone
     public enum InputType
     {
         Keyboard,
-        Joystick,
+        Gamepad,
         Touch
     }
 
@@ -16,6 +16,7 @@ namespace FPVDrone
         public InputType inputType = InputType.Keyboard;
 
         public KeyboardDroneInput keyboardInput;
+        public GamepadDroneInput gamepadInput;
         #endregion
 
         #region Properties
@@ -37,10 +38,10 @@ namespace FPVDrone
             get { return cyclicInput; }
         }
 
-        private float pedalInput;
-        public float PedalInput
+        private float rotationInput;
+        public float RotationInput
         {
-            get { return pedalInput; }
+            get { return rotationInput; }
         }
         #endregion
 
@@ -48,8 +49,9 @@ namespace FPVDrone
         void Start()
         {
             keyboardInput = GetComponent<KeyboardDroneInput>();
+            gamepadInput = GetComponent<GamepadDroneInput>();
 
-            if (keyboardInput)
+            if (keyboardInput && gamepadInput)
             {
                 SetIputType(inputType);
             }
@@ -67,7 +69,13 @@ namespace FPVDrone
                     throttleInput = keyboardInput.RawThrottleInput;
                     stickyThrottleInput = keyboardInput.StickyThrottleInput;
                     cyclicInput = keyboardInput.CyclicInput;
-                    pedalInput = keyboardInput.PedalInput;
+                    rotationInput = keyboardInput.RotationInput;
+                    break;
+                case InputType.Gamepad:
+                    throttleInput = gamepadInput.RawThrottleInput;
+                    // stickyThrottleInput = gamepadInput.StickyThrottleInput;
+                    cyclicInput = gamepadInput.CyclicInput;
+                    rotationInput = gamepadInput.RotationInput;
                     break;
                 default:
                     Debug.LogWarning("No Input Type selected");
@@ -79,11 +87,17 @@ namespace FPVDrone
         #region Custom Methods
         void SetIputType(InputType type)
         {
-            if (keyboardInput)
+            if (keyboardInput && gamepadInput)
             {
                 if (type == InputType.Keyboard)
                 {
                     keyboardInput.enabled = true;
+                    gamepadInput.enabled = false;
+                }
+                else if (type == InputType.Gamepad)
+                {
+                    keyboardInput.enabled = false;
+                    gamepadInput.enabled = true;
                 }
             }
         }
