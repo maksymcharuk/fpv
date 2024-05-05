@@ -2,22 +2,19 @@ using UnityEditor;
 
 namespace FPVDrone
 {
-    [CustomEditor(typeof(KeyboardDroneInput))]
-    public class KeyboardDroneInputEditor : Editor
+    [CustomEditor(typeof(InputController))]
+    public class InputControllerEditor : Editor
     {
         #region Variables
-        KeyboardDroneInput targetInput;
+        InputController inputCtrl;
         #endregion
 
         #region Built-in Methods
-        void OnEnable()
-        {
-            targetInput = (KeyboardDroneInput)target;
-        }
-
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
+
+            inputCtrl = (InputController)target;
 
             DrawDebugLayout();
 
@@ -30,9 +27,9 @@ namespace FPVDrone
             EditorGUILayout.Space(10);
 
             EditorGUI.indentLevel++;
-            EditorGUILayout.LabelField("Throttle Input: " + targetInput.RawThrottleInput);
-            EditorGUILayout.LabelField("Cyclic Input: " + targetInput.CyclicInput);
-            EditorGUILayout.LabelField("Rotation Input: " + targetInput.RotationInput);
+            EditorGUILayout.LabelField("Throttle Input: " + inputCtrl.ThrottleInput);
+            EditorGUILayout.LabelField("Cyclic Input: " + inputCtrl.CyclicInput);
+            EditorGUILayout.LabelField("Rotation Input: " + inputCtrl.RotationInput);
             EditorGUI.indentLevel--;
 
             EditorGUILayout.Space(10);

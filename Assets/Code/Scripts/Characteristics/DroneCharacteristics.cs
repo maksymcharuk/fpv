@@ -9,11 +9,9 @@ namespace FPVDrone
         public float maxLiftForce = 50f;
         public DroneRotor[] rotors;
 
-        [Space]
         [Header("Rotation Properties")]
         public float rotationForce = 2f;
 
-        [Space]
         [Header("Cyclic Properties")]
         public float cyclicForce = 2f;
         #endregion
