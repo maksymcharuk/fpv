@@ -8,9 +8,6 @@ public class BaseRBController : MonoBehaviour
     [Tooltip("Weight in kg")]
     public float weight = 0f;
 
-    [Tooltip("Center of gravity")]
-    public Transform cog;
-
     protected Rigidbody rb;
     #endregion
 
