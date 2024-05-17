@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3233543755020212413}
   - component: {fileID: 76518937818748669}
   - component: {fileID: 2050454575563054326}
+  - component: {fileID: 9020408882774768339}
   m_Layer: 0
   m_Name: Drone
   m_TagString: Untagged
@@ -148,6 +149,22 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &9020408882774768339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187763104725182204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6358ac4413e9761498d4174246374807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerForce: 0.5
+  explosionRadius: 5
+  explosionForce: 500
+  particles: {fileID: 0}
 --- !u!1 &831399224541889555
 GameObject:
   m_ObjectHideFlags: 0
