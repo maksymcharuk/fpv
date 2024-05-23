@@ -17,15 +17,35 @@ namespace FPVDrone
         {
             if (collision.relativeVelocity.magnitude >= triggerForce)
             {
-                var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius);
+                var surroundingObjects1 = Physics.OverlapSphere(
+                    transform.position,
+                    explosionRadius
+                );
 
-                foreach (var obj in surroundingObjects)
+                foreach (var obj in surroundingObjects1)
                 {
-                    var rb = obj.GetComponent<Rigidbody>();
-                    if (rb == null)
-                        continue;
+                    // Apply damage to damageable objects
+                    Damageable damageable = obj.GetComponent<Damageable>();
+                    if (damageable != null)
+                    {
+                        Debug.Log("Damageable: " + damageable);
+                        damageable.ApplyDamage(explosionForce, transform.position, explosionRadius);
+                    }
+                }
 
-                    rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+                var surroundingObjects2 = Physics.OverlapSphere(
+                    transform.position,
+                    explosionRadius
+                );
+
+                foreach (var obj in surroundingObjects2)
+                {
+                    // Apply explosion force
+                    var rb = obj.GetComponent<Rigidbody>();
+                    if (rb != null)
+                    {
+                        rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+                    }
                 }
 
                 if (particles)
