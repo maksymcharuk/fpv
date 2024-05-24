@@ -2,21 +2,11 @@ using UnityEngine;
 
 namespace FPVDrone
 {
-    public class TankController : EnemyController
+    public class TankController : MonoBehaviour
     {
         #region Variables
-        public DamageablePart cannon;
-        public DamageablePart body;
-        #endregion
-
-        #region Built-in Methods
-        public override void Start()
-        {
-            base.Start();
-
-            damageable.AddPart(cannon);
-            damageable.AddPart(body);
-        }
+        public Damageable cannon;
+        public Damageable body;
         #endregion
     }
 }

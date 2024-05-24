@@ -48,9 +48,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187763104725182204}
   serializedVersion: 4
-  m_Mass: 163.6
-  m_Drag: 0.92
-  m_AngularDrag: 0.94
+  m_Mass: 10
+  m_Drag: 1
+  m_AngularDrag: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41c338a5f76cc0b4b9ba15072643469b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 1
+  weight: 5
   engines:
   - {fileID: 6540850888713804065}
   - {fileID: 7339965277185793743}
@@ -116,7 +116,7 @@ MonoBehaviour:
   - {fileID: 4872705033566627530}
   - {fileID: 484851575591060577}
   - {fileID: 5970038557172392840}
-  rotationForce: 2
+  rotationForce: 1
   cyclicForce: 2
 --- !u!114 &2050454575563054326
 MonoBehaviour:
@@ -162,9 +162,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerForce: 0.5
-  explosionRadius: 5
-  explosionForce: 500
-  particles: {fileID: 0}
+  explosionRadius: 2
+  explosionForce: 5000
+  particles: {fileID: 9111320563476075686, guid: c6fb71e58ec36784687d958bc39de3f2,
+    type: 3}
 --- !u!1 &831399224541889555
 GameObject:
   m_ObjectHideFlags: 0

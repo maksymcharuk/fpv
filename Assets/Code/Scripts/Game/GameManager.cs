@@ -15,7 +15,10 @@ namespace FPVDrone
         void Awake()
         {
             if (replayCamera != null)
+            {
                 replayCamera.enabled = false;
+                replayCamera.GetComponent<AudioListener>().enabled = false;
+            }
         }
 
         void Update()
@@ -23,6 +26,7 @@ namespace FPVDrone
             if (mainCamera == null && replayCamera != null)
             {
                 replayCamera.enabled = true;
+                replayCamera.GetComponent<AudioListener>().enabled = true;
             }
         }
         #endregion
