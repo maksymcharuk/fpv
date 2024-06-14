@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 78663587995101969}
-  - component: {fileID: -3825182407570366617}
+  - component: {fileID: 4984219297628854945}
   m_Layer: 0
   m_Name: Shrub
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 6874237797193151059}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &-3825182407570366617
+--- !u!65 &4984219297628854945
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -53,8 +53,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.9879031, z: 1}
+  m_Center: {x: 0, y: 1.5697501, z: 0}
 --- !u!1 &1304704324520337455
 GameObject:
   m_ObjectHideFlags: 0
