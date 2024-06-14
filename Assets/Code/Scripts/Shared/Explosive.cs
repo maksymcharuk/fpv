@@ -25,7 +25,6 @@ namespace FPVDrone
                     Damageable damageable = obj.GetComponent<Damageable>();
                     if (damageable != null)
                     {
-                        Debug.Log("Damageable: " + damageable);
                         damageable.ApplyDamage(explosionForce, transform.position, explosionRadius);
                     }
 

@@ -11,7 +11,6 @@ namespace FPVDrone
         public int health = 100;
         public GameObject particles;
 
-        private Rigidbody rb;
         private Collider col;
         #endregion
 
@@ -26,8 +25,6 @@ namespace FPVDrone
         #region Built-in Methods
         void Start()
         {
-            rb = GetComponent<Rigidbody>();
-
             col = GetComponent<Collider>();
 
             particles = GetComponentInChildren<ParticleSystem>()?.gameObject;
