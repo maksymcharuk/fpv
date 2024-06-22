@@ -11,7 +11,7 @@ namespace FPVDrone
         #endregion
 
         #region Built-in Methods
-        void Start()
+        void Awake()
         {
             rotors = GetComponentsInChildren<IDroneRotor>().ToList();
         }

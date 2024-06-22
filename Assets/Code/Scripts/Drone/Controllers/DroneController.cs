@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace FPVDrone
 {
@@ -27,6 +30,13 @@ namespace FPVDrone
         }
         #endregion
 
+        #region Events
+        private void OnDestroy()
+        {
+            GameEvents.instance.droneDestroyed.SetValueAndForceNotify(true);
+        }
+        #endregion
+
         #region Custom Methods
         protected override void HandlePhysics()
         {
@@ -51,7 +61,6 @@ namespace FPVDrone
                 for (int j = 0; j < engines.Count; j++)
                 {
                     finalPower += engines[j].CurrentKV;
-                    // Debug.Log("Power: " + finalPower);
                 }
             }
         }

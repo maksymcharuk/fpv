@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 76518937818748669}
   - component: {fileID: 2050454575563054326}
   - component: {fileID: 9020408882774768339}
+  - component: {fileID: -6660611171700442435}
   m_Layer: 0
   m_Name: Drone
   m_TagString: Untagged
@@ -167,6 +168,21 @@ MonoBehaviour:
   explosionForce: 6000
   particles: {fileID: 9111320563476075686, guid: c6fb71e58ec36784687d958bc39de3f2,
     type: 3}
+--- !u!114 &-6660611171700442435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187763104725182204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e36a4c6efe8944d965dfa327d23d3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &831399224541889555
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,7 +319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3792325350750582091
 Transform:
   m_ObjectHideFlags: 0
@@ -913,7 +929,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8263801734276928652
 Transform:
   m_ObjectHideFlags: 0
