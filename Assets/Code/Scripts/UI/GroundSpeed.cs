@@ -3,41 +3,44 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 
-public class GroundSpeed : MonoBehaviour
+namespace FPVDrone
 {
-    private TextMeshProUGUI text;
-    private CompositeDisposable subscriptions = new CompositeDisposable();
-
-    private void Awake()
+    public class GroundSpeed : MonoBehaviour
     {
-        text = GetComponent<TextMeshProUGUI>();
-    }
+        private TextMeshProUGUI text;
+        private CompositeDisposable subscriptions = new CompositeDisposable();
 
-    #region Built-in Methods
-    private void OnEnable()
-    {
-        StartCoroutine(Subscribe());
-    }
+        private void Awake()
+        {
+            text = GetComponent<TextMeshProUGUI>();
+        }
 
-    private void OnDisable()
-    {
-        subscriptions.Clear();
-    }
-    #endregion
+        #region Built-in Methods
+        private void OnEnable()
+        {
+            StartCoroutine(Subscribe());
+        }
 
-    #region Custom Methods
-    private IEnumerator Subscribe()
-    {
-        yield return new WaitUntil(() => GameEvents.instance != null);
-        GameEvents.instance.groundSpeed
-            .ObserveEveryValueChanged(x => x.Value)
-            .Subscribe(UpdateGroundSpeed)
-            .AddTo(subscriptions);
-    }
+        private void OnDisable()
+        {
+            subscriptions.Clear();
+        }
+        #endregion
 
-    private void UpdateGroundSpeed(float value)
-    {
-        text.text = "Ground Speed: " + value.ToString("F2") + "m/s";
+        #region Custom Methods
+        private IEnumerator Subscribe()
+        {
+            yield return new WaitUntil(() => GameEvents.instance != null);
+            GameEvents.instance.groundSpeed
+                .ObserveEveryValueChanged(x => x.Value)
+                .Subscribe(UpdateGroundSpeed)
+                .AddTo(subscriptions);
+        }
+
+        private void UpdateGroundSpeed(float value)
+        {
+            text.text = "Ground Speed: " + value.ToString("F2") + "m/s";
+        }
+        #endregion
     }
-    #endregion
 }

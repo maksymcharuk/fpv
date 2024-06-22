@@ -1,11 +1,12 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace FPVDrone
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : Singletone<GameManager>
     {
         #region Variables
         public Camera replayCamera;
@@ -58,7 +59,8 @@ namespace FPVDrone
             if (destroyed == false)
                 return;
 
-            EnableReplayCamera();
+            ReplayManager.instance.StartReplay();
+
             dronesLeft--;
             GameEvents.instance.dronesLeft.SetValueAndForceNotify(dronesLeft);
 
@@ -70,7 +72,7 @@ namespace FPVDrone
 
             if (spawnPoint != null)
             {
-                Invoke("SpawnDrone", 3f);
+                Invoke("SpawnDrone", 7f);
             }
         }
         #endregion
@@ -80,26 +82,23 @@ namespace FPVDrone
         {
             if (dronePrefab != null && spawnPoint != null)
             {
-                DisableReplayCamera();
-                Instantiate(dronePrefab, spawnPoint.position, spawnPoint.rotation);
-            }
-        }
+                GameObject drone = Instantiate(
+                    dronePrefab,
+                    spawnPoint.position,
+                    spawnPoint.rotation
+                );
 
-        private void EnableReplayCamera()
-        {
-            if (replayCamera != null)
-            {
-                replayCamera.enabled = true;
-                replayCamera.GetComponent<AudioListener>().enabled = true;
-            }
-        }
+                DroneController controller = drone.GetComponent<DroneController>();
+                ReplayCamera camera =
+                    FrameCapture.instance.captureCamera.GetComponent<ReplayCamera>();
+                FallbackCamera fallbackCamera =
+                    ReplayManager.instance.fallbackCamera.GetComponent<FallbackCamera>();
 
-        private void DisableReplayCamera()
-        {
-            if (replayCamera != null)
-            {
-                replayCamera.enabled = false;
-                replayCamera.GetComponent<AudioListener>().enabled = false;
+                ReplayManager.instance.fallbackCamera.enabled = false;
+                camera.droneTransform = controller.transform;
+                fallbackCamera.droneTransform = controller.transform;
+
+                FrameCapture.instance.StartRecording();
             }
         }
         #endregion

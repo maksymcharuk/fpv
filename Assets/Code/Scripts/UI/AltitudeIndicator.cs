@@ -3,41 +3,44 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 
-public class AltitudeIndicator : MonoBehaviour
+namespace FPVDrone
 {
-    private TextMeshProUGUI text;
-    private CompositeDisposable subscriptions = new CompositeDisposable();
-
-    private void Awake()
+    public class AltitudeIndicator : MonoBehaviour
     {
-        text = GetComponent<TextMeshProUGUI>();
-    }
+        private TextMeshProUGUI text;
+        private CompositeDisposable subscriptions = new CompositeDisposable();
 
-    #region Built-in Methods
-    private void OnEnable()
-    {
-        StartCoroutine(Subscribe());
-    }
+        private void Awake()
+        {
+            text = GetComponent<TextMeshProUGUI>();
+        }
 
-    private void OnDisable()
-    {
-        subscriptions.Clear();
-    }
-    #endregion
+        #region Built-in Methods
+        private void OnEnable()
+        {
+            StartCoroutine(Subscribe());
+        }
 
-    #region Custom Methods
-    private IEnumerator Subscribe()
-    {
-        yield return new WaitUntil(() => GameEvents.instance != null);
-        GameEvents.instance.altitudeIndicatorRotation
-            .ObserveEveryValueChanged(x => x.Value)
-            .Subscribe(UpdateAltitudeIndicator)
-            .AddTo(subscriptions);
-    }
+        private void OnDisable()
+        {
+            subscriptions.Clear();
+        }
+        #endregion
 
-    private void UpdateAltitudeIndicator(Quaternion rotation)
-    {
-        text.transform.localRotation = rotation;
+        #region Custom Methods
+        private IEnumerator Subscribe()
+        {
+            yield return new WaitUntil(() => GameEvents.instance != null);
+            GameEvents.instance.altitudeIndicatorRotation
+                .ObserveEveryValueChanged(x => x.Value)
+                .Subscribe(UpdateAltitudeIndicator)
+                .AddTo(subscriptions);
+        }
+
+        private void UpdateAltitudeIndicator(Quaternion rotation)
+        {
+            text.transform.localRotation = rotation;
+        }
+        #endregion
     }
-    #endregion
 }
