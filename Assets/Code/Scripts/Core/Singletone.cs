@@ -1,14 +1,17 @@
 using UnityEngine;
 
-public abstract class Singletone<T> : MonoBehaviour
-    where T : MonoBehaviour
+namespace FPVDrone
 {
-    public static T instance { get; private set; }
-
-    private void Awake()
+    public abstract class Singletone<T> : MonoBehaviour
+        where T : MonoBehaviour
     {
-        if (instance != null && instance != this)
-            Destroy(this.gameObject);
-        instance = this as T;
+        public static T instance { get; private set; }
+
+        private void Awake()
+        {
+            if (instance != null && instance != this)
+                Destroy(this.gameObject);
+            instance = this as T;
+        }
     }
 }

@@ -3,41 +3,44 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 
-public class DronesLeft : MonoBehaviour
+namespace FPVDrone
 {
-    private TextMeshProUGUI text;
-    private CompositeDisposable subscriptions = new CompositeDisposable();
-
-    private void Awake()
+    public class DronesLeft : MonoBehaviour
     {
-        text = GetComponent<TextMeshProUGUI>();
-    }
+        private TextMeshProUGUI text;
+        private CompositeDisposable subscriptions = new CompositeDisposable();
 
-    #region Built-in Methods
-    private void OnEnable()
-    {
-        StartCoroutine(Subscribe());
-    }
+        private void Awake()
+        {
+            text = GetComponent<TextMeshProUGUI>();
+        }
 
-    private void OnDisable()
-    {
-        subscriptions.Clear();
-    }
-    #endregion
+        #region Built-in Methods
+        private void OnEnable()
+        {
+            StartCoroutine(Subscribe());
+        }
 
-    #region Custom Methods
-    private IEnumerator Subscribe()
-    {
-        yield return new WaitUntil(() => GameEvents.instance != null);
-        GameEvents.instance.dronesLeft
-            .ObserveEveryValueChanged(x => x.Value)
-            .Subscribe(UpdateDronesLeft)
-            .AddTo(subscriptions);
-    }
+        private void OnDisable()
+        {
+            subscriptions.Clear();
+        }
+        #endregion
 
-    private void UpdateDronesLeft(int value)
-    {
-        text.text = $"Drones Left: {value}";
+        #region Custom Methods
+        private IEnumerator Subscribe()
+        {
+            yield return new WaitUntil(() => GameEvents.instance != null);
+            GameEvents.instance.dronesLeft
+                .ObserveEveryValueChanged(x => x.Value)
+                .Subscribe(UpdateDronesLeft)
+                .AddTo(subscriptions);
+        }
+
+        private void UpdateDronesLeft(int value)
+        {
+            text.text = $"Drones Left: {value}";
+        }
+        #endregion
     }
-    #endregion
 }

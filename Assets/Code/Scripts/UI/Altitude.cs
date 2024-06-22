@@ -3,41 +3,44 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 
-public class Altitude : MonoBehaviour
+namespace FPVDrone
 {
-    private TextMeshProUGUI text;
-    private CompositeDisposable subscriptions = new CompositeDisposable();
-
-    private void Awake()
+    public class Altitude : MonoBehaviour
     {
-        text = GetComponent<TextMeshProUGUI>();
-    }
+        private TextMeshProUGUI text;
+        private CompositeDisposable subscriptions = new CompositeDisposable();
 
-    #region Built-in Methods
-    private void OnEnable()
-    {
-        StartCoroutine(Subscribe());
-    }
+        private void Awake()
+        {
+            text = GetComponent<TextMeshProUGUI>();
+        }
 
-    private void OnDisable()
-    {
-        subscriptions.Clear();
-    }
-    #endregion
+        #region Built-in Methods
+        private void OnEnable()
+        {
+            StartCoroutine(Subscribe());
+        }
 
-    #region Custom Methods
-    private IEnumerator Subscribe()
-    {
-        yield return new WaitUntil(() => GameEvents.instance != null);
-        GameEvents.instance.altitude
-            .ObserveEveryValueChanged(x => x.Value)
-            .Subscribe(UpdateAltitude)
-            .AddTo(subscriptions);
-    }
+        private void OnDisable()
+        {
+            subscriptions.Clear();
+        }
+        #endregion
 
-    private void UpdateAltitude(float value)
-    {
-        text.text = "Altitude: " + value.ToString("F2") + "m";
+        #region Custom Methods
+        private IEnumerator Subscribe()
+        {
+            yield return new WaitUntil(() => GameEvents.instance != null);
+            GameEvents.instance.altitude
+                .ObserveEveryValueChanged(x => x.Value)
+                .Subscribe(UpdateAltitude)
+                .AddTo(subscriptions);
+        }
+
+        private void UpdateAltitude(float value)
+        {
+            text.text = "Altitude: " + value.ToString("F2") + "m";
+        }
+        #endregion
     }
-    #endregion
 }
